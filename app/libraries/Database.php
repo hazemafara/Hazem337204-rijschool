@@ -32,7 +32,7 @@ class Database
         return  $this->statement->bindValue($param, $value, $type);
     }
 
-    public function resultSet()
+    public function resultFetch()
     {
         $this->statement->execute();
         return $this->statement->fetchAll(PDO::FETCH_OBJ);

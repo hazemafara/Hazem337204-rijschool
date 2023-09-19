@@ -7,22 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= URLROOT; ?>/css/style.css">
     <title>Voertuigen</title>
-    <?php if (empty($data["voertuigen"])) : ?>
+    <!-- <?php if (empty($data["voertuigen"])) : ?>
         <meta http-equiv="refresh" content="3; url=/instructeur/index">
-    <?php endif ?>
+    <?php endif ?> -->
 </head>
 
 <body>
     <h1><?= $data['title']; ?></h1>
 
-    <h2><?= $data['instructeur']->Voornaam ?> <?= $data['instructeur']->Tussenvoegsel ?> <?= $data['instructeur']->Achternaam ?></h2>
-    <h2><?= $data['instructeur']->DatumInDienst ?></h2>
-    <h2><?= $data['instructeur']->AantalSterren ?></h2>
+    <p><?= $data['instructeur']->Voornaam ?> <?= $data['instructeur']->Tussenvoegsel ?> <?= $data['instructeur']->Achternaam ?></p>
+    <p><?= $data['instructeur']->DatumInDienst ?></p>
+    <p><?= $data['instructeur']->AantalSterren ?></p>
 
-    <p><a href="/instructeur/toevoegen/<?= $data['instructeur']->Id ?>">Toevoegen voertuig</a></p>
+    <button><a href="/instructeur/toevoegen/<?= $data['instructeur']->Id ?>">voertuig toevoegen</a></button>
 
-    <?php if (empty($data["voertuigen"])) : ?>
-        <h3>Er zijn op dit moment nog geen voertuigen toegewezen aan deze instructeur.</h3>
+    <?php
+    error_reporting(0);
+
+    if (empty($data["voertuigen"])) : ?>
+        <h3>empty</h3>
     <?php else : ?>
         <table border='1'>
             <thead>
@@ -43,6 +46,10 @@
                         <td><?= $voertuig->Bouwjaar ?></td>
                         <td><?= $voertuig->Brandstof ?></td>
                         <td><?= $voertuig->Rijbewijscategorie ?></td>
+                        <td><a href="/instructeur/update/<?= $voertuig->VoertuigId ?>/<?= $voertuig->InstructeurId ?>">update</a>
+                            <a href="/instructeur/delete/<?= $voertuig->VoertuigId ?>/<?= $voertuig->InstructeurId ?>">delete</a>
+                        </td>
+
                     </tr>
                 <?php endforeach ?>
             </tbody>

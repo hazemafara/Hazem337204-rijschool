@@ -1,7 +1,7 @@
 <?php
 
-class Core
-{
+ class Core
+ {
     private $currentController = 'Homepage';
     private $currentMethod = 'index';
     private $params = [];
@@ -17,7 +17,7 @@ class Core
             // var_dump($url);
         }
         // We sluiten het klasse-bestand in. 
-        require_once '../app/controllers/' . $this->currentController . '.php';
+        require_once '../app/controllers/'. $this->currentController . '.php';
 
         // We maken een nieuw object van de controller klasse
         $this->currentController = new $this->currentController();
@@ -32,8 +32,8 @@ class Core
             }
         }
 
-
-        $this->params = $url ? array_values($url) : [];
+        
+        $this->params = $url ? array_values($url): [];
 
         call_user_func_array([$this->currentController, $this->currentMethod], $this->params);
     }
@@ -54,4 +54,4 @@ class Core
             return array('Homepage', 'index');
         }
     }
-}
+ }

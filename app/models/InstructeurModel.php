@@ -15,7 +15,7 @@ class InstructeurModel
 
         $this->db->query($sql);
 
-        return $this->db->resultSet();
+        return $this->db->resultFetch();
     }
 
     public function getInstructeurById($id)
@@ -38,7 +38,7 @@ class InstructeurModel
         $this->db->query($sql);
         $this->db->bindValue(":id", $id);
 
-        return $this->db->resultSet();
+        return $this->db->resultFetch();
     }
 
     public function getUnassignedVoertuigen()
@@ -49,7 +49,7 @@ class InstructeurModel
 
         $this->db->query($sql);
 
-        return $this->db->resultSet();
+        return $this->db->resultFetch();
     }
 
     public function insertVoertuig($instructeurId, $voertuigId)
@@ -63,6 +63,43 @@ class InstructeurModel
         $this->db->bindValue(":voertuigId", $voertuigId);
         $this->db->bindValue(":instructeurId", $instructeurId);
 
-        return $this->db->resultSet();
+        return $this->db->resultFetch();
     }
+
+    public function update($voertuigId, $instructeurId)
+    {
+        $sql = "SELECT * FROM VoertuigInstructeur a
+        LEFT JOIN Voertuig b ON a.VoertuigId = b.Id
+        LEFT JOIN TypeVoertuig c ON b.TypeVoertuigId = c.Id
+        
+         where VoertuigId = $voertuigId and InstructeurId = $instructeurId"  ;
+
+        $this->db->query($sql);
+
+        return $this->db->resultFetch();
+    }
+
+    public function allUpdatedResults()
+    {
+        $sql = "SELECT * FROM VoertuigInstructeur a
+        LEFT JOIN Voertuig b ON a.VoertuigId = b.Id
+        LEFT JOIN TypeVoertuig c ON b.TypeVoertuigId = c.Id";
+
+        $this->db->query($sql);
+
+        return $this->db->resultFetch();
+    }
+
+    public function delete($voertuigId, $instructeurId)
+    {
+        $sql = "DELETE FROM VoertuigInstructeur
+        WHERE VoertuigId = $voertuigId AND InstructeurId = $instructeurId";
+
+        $this->db->query($sql);
+
+        $this->db->query($sql);
+
+        return $this->db->resultFetch();
+    }
+
 }

@@ -11,8 +11,6 @@
 
 <body>
     <h1><?= $data['title'] ?></h1>
-    <h2>Aantal instructeurs: <?= count($data['instructeurs']) ?></h2>
-
     <table border='1'>
         <thead>
             <th>Voornaam</th>
@@ -34,7 +32,7 @@
                     <td><?= $instructeur->AantalSterren ?></td>
                     <td>
                         <a href="<?= URLROOT ?>/instructeur/gebruikteVoertuigen/<?= $instructeur->Id ?>">
-                            <img src="/img/car.png" alt="Car" width="32" height="32">
+                            <img src="https://www.freeiconspng.com/thumbs/car-icon-png/car-icon-png-25.png"  alt="Car" width="40" height="40">
                         </a>
                     </td>
                 </tr>

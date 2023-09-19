@@ -56,4 +56,38 @@ class Instructeur extends BaseController
         header("Refresh: 3; url=/instructeur/gebruikteVoertuigen/" . $instructeurId);
         echo "Voertuig toegevoegd.";
     }
+
+        public function update($voertuigId, $instructeurId)
+    {
+
+        $updateVoertuig = $this->instructeurModel->update($voertuigId, $instructeurId);
+        $allUpdatedResults = $this->instructeurModel->allUpdatedResults();
+
+
+
+        $data = [
+            'title' => 'Toevoegen voertuig',
+            'update'=> $updateVoertuig,
+            'allUpdatedResults' => $allUpdatedResults,
+        ];
+        $this->view('Instructeur/update', $data);
+    }
+
+    public function delete($voertuigId, $instructeurId)
+    {
+
+        $delete = $this->instructeurModel->delete($voertuigId, $instructeurId);
+
+
+
+        $data = [
+            'title' => 'Toevoegen voertuig',
+            'delete' => $delete,
+        ];
+        $this->view('Instructeur/delete', $data);
+    }
+
+
+
+
 }

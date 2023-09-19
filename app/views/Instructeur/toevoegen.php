@@ -7,17 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= URLROOT; ?>/css/style.css">
     <title>Voertuigen</title>
-    <?php if (empty($data["voertuigen"])) : ?>
-        <meta http-equiv="refresh" content="3; url=/instructeur/index">
-    <?php endif ?>
 </head>
 
 <body>
     <h1><?= $data['title']; ?></h1>
 
-    <h2><?= $data['instructeur']->Voornaam ?> <?= $data['instructeur']->Tussenvoegsel ?> <?= $data['instructeur']->Achternaam ?></h2>
-    <h2><?= $data['instructeur']->DatumInDienst ?></h2>
-    <h2><?= $data['instructeur']->AantalSterren ?></h2>
+    <p><?= $data['instructeur']->Voornaam ?> <?= $data['instructeur']->Tussenvoegsel ?> <?= $data['instructeur']->Achternaam ?></p>
+    <p><?= $data['instructeur']->DatumInDienst ?></p>
+    <p><?= $data['instructeur']->AantalSterren ?></p>
 
     <?php if (empty($data["voertuigen"])) : ?>
         <h3>Er zijn op dit moment nog geen vrije voertuigen.</h3>
@@ -34,7 +31,7 @@
             </thead>
             <tbody>
                 <?php foreach ($data['voertuigen'] as $voertuig) : ?>
-                    <!-- <?php var_dump($voertuig) ?> -->
+                    <!-- <?php var_dump($data['instructeur']) ?> -->
                     <tr>
                         <td><?= $voertuig->TypeVoertuig ?></td>
                         <td><?= $voertuig->Type ?></td>
@@ -42,7 +39,7 @@
                         <td><?= $voertuig->Bouwjaar ?></td>
                         <td><?= $voertuig->Brandstof ?></td>
                         <td><?= $voertuig->Rijbewijscategorie ?></td>
-                        <td><a href="/instructeur/voegToe/<?= $data['instructeur']->Id ?>/<?= $voertuig->Id ?>">Toevoegen</a></td>
+                        <td><a href="/instructeur/voegToe/<?= $data['instructeur']->Id ?>/<?= $voertuig->Id ?>">Add</a></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
